@@ -10,6 +10,8 @@
     "format": "prettier --write \"./**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.18.9",
     "next": "12.1.0",
     "prettier": "^2.5.1",
     "react": "17.0.2",
