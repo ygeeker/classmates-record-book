@@ -29,5 +29,6 @@ module.exports = {
       'error',
       { ignoreRestSiblings: true },
     ],
+    'react/prop-types': [0],
   },
 };
