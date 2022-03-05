@@ -1,4 +1,4 @@
-import { FormOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { FormOutlined, HomeOutlined, LoginOutlined } from '@ant-design/icons';
 import { Layout as AntdLayout, Menu, Typography } from 'antd';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ const Layout: React.FC = ({ children }) => {
             <Menu.Item key="register" icon={<FormOutlined />}>
               <Link href="/register">登记</Link>
             </Menu.Item>
-            <Menu.Item key="admin" icon={<UserOutlined />}>
+            <Menu.Item key="admin" icon={<LoginOutlined />}>
               <Link href="/admin">后台</Link>
             </Menu.Item>
           </Menu>
