@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   useSetLayoutMenu('index');
 
   return (
-    <Empty>
+    <Empty description="暂无数据">
       <Link href="/register" passHref>
         <Button type="primary">登记</Button>
       </Link>
