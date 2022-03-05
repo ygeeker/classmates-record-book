@@ -11,13 +11,13 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_NAME}的同学录</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE_NAME}的同学录</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AntdLayout className="min-h-screen">
         <AntdLayout.Header>
           <div className="text-white float-left">
-            {process.env.NEXT_PUBLIC_NAME}的同学录
+            {process.env.NEXT_PUBLIC_TITLE_NAME}的同学录
           </div>
           <Menu
             theme="dark"
