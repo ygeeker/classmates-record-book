@@ -1,10 +1,13 @@
-import { FormOutlined, UserOutlined } from '@ant-design/icons';
+import { FormOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout as AntdLayout, Menu, Typography } from 'antd';
-import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
+import { useLayoutMenuValue } from '../contexts/layout-menu';
 
-const Layout: NextPage = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
+  const layoutMenu = useLayoutMenuValue();
+
   return (
     <>
       <Head>
@@ -19,14 +22,17 @@ const Layout: NextPage = ({ children }) => {
           <Menu
             theme="dark"
             mode="horizontal"
-            selectable={false}
-            className="float-right"
+            className="float-right w-4 sm:w-auto"
+            selectedKeys={[layoutMenu]}
           >
-            <Menu.Item key="1" icon={<FormOutlined />}>
-              登记
+            <Menu.Item key="index" icon={<HomeOutlined />}>
+              <Link href="/">主页</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<UserOutlined />}>
-              后台
+            <Menu.Item key="register" icon={<FormOutlined />}>
+              <Link href="/register">登记</Link>
+            </Menu.Item>
+            <Menu.Item key="admin" icon={<UserOutlined />}>
+              <Link href="/admin">后台</Link>
             </Menu.Item>
           </Menu>
         </AntdLayout.Header>
