@@ -12,7 +12,7 @@ model Student {
   createdAt DateTime @default(now())
 
   name    String
-  gender  Boolean
+  gender  String
   class   Int
   school  String
   qq      String?
