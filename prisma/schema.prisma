@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.db"
+}
+
+model Student {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  name    String
+  gender  Boolean
+  class   Int
+  school  String
+  qq      String?
+  wechat  String?
+  message String?
+
+  show Boolean @default(false)
+}
