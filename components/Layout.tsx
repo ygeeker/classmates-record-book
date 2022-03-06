@@ -32,7 +32,7 @@ const Layout: React.FC = ({ children }) => {
               <Link href="/register">登记</Link>
             </Menu.Item>
             <Menu.Item key="admin" icon={<LoginOutlined />}>
-              <Link href="/admin">后台</Link>
+              <Link href="/admin/login">后台</Link>
             </Menu.Item>
           </Menu>
         </AntdLayout.Header>
