@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import db from '../../lib/prisma';
-import { API } from '../../service/apis';
+import API from '../../service/apis';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({

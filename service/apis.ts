@@ -3,7 +3,7 @@ import { AdminModifyStudentShowRequestBody } from '../pages/api/admin/student/sh
 import { CreateStudentRequestBody } from '../pages/api/student';
 import service from './axios';
 
-export class API {
+export default class API {
   static async createStudent(body: CreateStudentRequestBody) {
     return await service.post('/student', body);
   }

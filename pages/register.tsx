@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useSetLayoutMenu } from '../contexts/layout-menu';
-import { API } from '../service/apis';
+import API from '../service/apis';
 
 const Register: NextPage = () => {
   useSetLayoutMenu('register');
