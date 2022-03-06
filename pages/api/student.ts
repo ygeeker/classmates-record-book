@@ -15,10 +15,10 @@ export type CreateStudentRequestBody = {
 const createStudent = async (req: NextApiRequest, res: NextApiResponse) => {
   const { key, ...data } = req.body as CreateStudentRequestBody;
   if (key !== process.env.REGISTER_KEY) {
-    res.status(401).send({ message: '登记口令错误' });
+    return res.status(401).send({ message: '登记口令错误' });
   }
   await db.student.create({ data });
-  res.json({ message: '登记成功, 请等待审核' });
+  return res.json({ message: '登记成功, 请等待审核' });
 };
 
 export default createStudent;
