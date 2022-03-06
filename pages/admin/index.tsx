@@ -1,4 +1,5 @@
-import { message, Switch, Table } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import { Button, message, Switch, Table } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
@@ -67,6 +68,11 @@ const Admin: NextPage<AdminProps> = ({ students }) => {
     })();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    router.push('/admin/login');
+  };
+
   const tableColumns: ColumnType<Student>[] = [
     {
       title: '主页显示',
@@ -108,12 +114,22 @@ const Admin: NextPage<AdminProps> = ({ students }) => {
   ];
 
   return (
-    <Table
-      dataSource={students}
-      columns={tableColumns}
-      rowKey="id"
-      pagination={false}
-    />
+    <>
+      <Button
+        type="primary"
+        icon={<LogoutOutlined />}
+        className="mb-3"
+        onClick={handleLogout}
+      >
+        退出登录
+      </Button>
+      <Table
+        dataSource={students}
+        columns={tableColumns}
+        rowKey="id"
+        pagination={false}
+      />
+    </>
   );
 };
 
