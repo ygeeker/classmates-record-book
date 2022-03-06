@@ -72,7 +72,7 @@ const Register: NextPage = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Form.Item>
+      <Form.Item wrapperCol={{ offset: 4 }}>
         <Button type="primary" htmlType="submit">
           提交
         </Button>
