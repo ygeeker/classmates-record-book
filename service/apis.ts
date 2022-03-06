@@ -1,4 +1,5 @@
 import { AdminLoginRequestBody } from '../pages/api/admin/login';
+import { AdminModifyStudentShowRequestBody } from '../pages/api/admin/student/show';
 import { CreateStudentRequestBody } from '../pages/api/student';
 import service from './axios';
 
@@ -11,5 +12,8 @@ export class API {
   }
   static async adminInit() {
     return await service.get('/admin/init');
+  }
+  static async adminModifyStudentShow(body: AdminModifyStudentShowRequestBody) {
+    return await service.patch('/admin/student/show', body);
   }
 }
