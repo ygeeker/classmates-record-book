@@ -7,7 +7,7 @@ const LayoutMenuContext = createContext<
 >(undefined);
 
 export const LayoutMenuProvider: React.FC = ({ children }) => {
-  const [layoutMenu, setLayoutMenu] = useState<LayoutMenu>('index');
+  const [layoutMenu, setLayoutMenu] = useState<LayoutMenu>('');
 
   return (
     <LayoutMenuContext.Provider value={[layoutMenu, setLayoutMenu]}>
