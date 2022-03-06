@@ -9,7 +9,7 @@ const adminInit = (req: NextApiRequest, res: NextApiResponse) => {
     };
     return res.json({ status: 'success' });
   } catch {
-    return res.status(401).send({ message: '管理员验证失败' });
+    return res.status(401).send({ message: '管理员鉴权失败' });
   }
 };
 
