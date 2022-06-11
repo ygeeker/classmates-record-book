@@ -9,7 +9,7 @@
 
 ```sh
 # 安装所有依赖
-pnpm install
+pnpm i
 # 初始化SQLite数据库
 npx prisma db push
 ```
