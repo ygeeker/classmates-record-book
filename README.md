@@ -8,10 +8,7 @@
 ## 安装
 
 ```sh
-# 安装所有依赖
 pnpm i
-# 初始化SQLite数据库
-npx prisma db push
 ```
 
 ## 启动
