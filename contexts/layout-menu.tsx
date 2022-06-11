@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type LayoutMenu = 'index' | 'register' | 'admin' | '';
+type LayoutMenu = 'index' | 'register' | 'admin' | 'map' | '';
 
 const LayoutMenuContext = createContext<
   [LayoutMenu, React.Dispatch<React.SetStateAction<LayoutMenu>>] | undefined
