@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"./**/*.{ts,tsx}\""
+    "format": "prettier --write \"**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
