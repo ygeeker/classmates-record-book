@@ -3,7 +3,7 @@ import { Descriptions } from 'antd';
 import { GetServerSideProps, NextPage } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import db from '../../lib/prisma';
 import API from '../../service/apis';
