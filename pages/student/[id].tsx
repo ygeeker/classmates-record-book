@@ -2,11 +2,11 @@ import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import db from '../../lib/prisma';
 import API from '../../service/apis';
 import { Student } from '@prisma/client';
+import { useRequest } from 'ahooks';
 import { Descriptions } from 'antd';
 import { GetServerSideProps, NextPage } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const student = await db.student.findUnique({
@@ -25,21 +25,10 @@ interface StudentProps {
 
 const StudentPage: NextPage<StudentProps> = ({ student }) => {
   useSetLayoutMenu('');
-  const [notFound, setNotFound] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (!student.show) {
-      (async () => {
-        try {
-          await API.adminInit();
-        } catch (error) {
-          setNotFound(true);
-        }
-      })();
-    }
-  }, [student.show]);
+  const { error } = useRequest(API.adminInit, { ready: !student.show });
 
-  if (notFound) {
+  if (error) {
     return <Error statusCode={401} title="尚未审核" />;
   }
 

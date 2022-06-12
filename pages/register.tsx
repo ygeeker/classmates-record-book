@@ -1,5 +1,6 @@
 import { useSetLayoutMenu } from '../contexts/layout-menu';
 import API from '../service/apis';
+import { useRequest } from 'ahooks';
 import { Button, Form, Input, InputNumber, Radio } from 'antd';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -9,14 +10,16 @@ const RegisterPage: NextPage = () => {
 
   const router = useRouter();
 
+  const { run } = useRequest(API.createStudent, { manual: true });
+
   return (
     <Form
       name="register"
       className="max-w-xl mx-auto"
       labelCol={{ span: 4 }}
       scrollToFirstError
-      onFinish={async (formData) => {
-        await API.createStudent(formData);
+      onFinish={(formData) => {
+        run(formData);
         router.push('/');
       }}
     >

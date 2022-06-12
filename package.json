@@ -15,6 +15,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@prisma/client": "^3.10.0",
+    "ahooks": "^3.4.1",
     "antd": "^4.18.9",
     "autoprefixer": "^10.4.2",
     "axios": "^0.26.0",

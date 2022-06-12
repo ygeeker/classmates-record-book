@@ -2,12 +2,13 @@ import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import db from '../../lib/prisma';
 import API from '../../service/apis';
 import { LogoutOutlined } from '@ant-design/icons';
-import { Button, message, Switch, Table } from 'antd';
+import { useRequest } from 'ahooks';
+import { Button, Switch, Table } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({
@@ -51,27 +52,14 @@ const AdminPage: NextPage<AdminProps> = ({ students }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      router.push('/admin/login');
-      message.warning('未登录');
-      return;
-    }
-    (async () => {
-      try {
-        await API.adminInit();
-      } catch (error) {
-        localStorage.removeItem('token');
-        router.push('/admin/login');
-        throw error;
-      }
-    })();
-  }, []);
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     router.push('/admin/login');
   };
+
+  useRequest(API.adminInit, {
+    onError: handleLogout,
+  });
 
   const tableColumns: ColumnType<Student>[] = [
     {

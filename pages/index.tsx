@@ -74,23 +74,23 @@ const IndexPage: NextPage<IndexProps> = ({ students }) => {
         </Link>
       </Empty>
     );
-  } else {
-    return (
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {students.map((student) => (
-          <Badge.Ribbon
-            key={student.id}
-            text={`${student.class}班`}
-            color={{ boy: 'blue', girl: 'pink' }[student.gender]}
-          >
-            <Card actions={generateActions(student)}>
-              <Card.Meta title={student.name} description={student.school} />
-            </Card>
-          </Badge.Ribbon>
-        ))}
-      </div>
-    );
   }
+
+  return (
+    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {students.map((student) => (
+        <Badge.Ribbon
+          key={student.id}
+          text={`${student.class}班`}
+          color={{ boy: 'blue', girl: 'pink' }[student.gender]}
+        >
+          <Card actions={generateActions(student)}>
+            <Card.Meta title={student.name} description={student.school} />
+          </Card>
+        </Badge.Ribbon>
+      ))}
+    </div>
+  );
 };
 
 export default IndexPage;

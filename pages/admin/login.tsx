@@ -1,23 +1,20 @@
 import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import API from '../../service/apis';
+import { useMount } from 'ahooks';
 import { Button, Form, Input } from 'antd';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const AdminLoginPage: NextPage = () => {
   useSetLayoutMenu('admin');
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      (async () => {
-        await API.adminInit();
-        router.push('/admin');
-      })();
+  useMount(() => {
+    if (Reflect.has(localStorage, 'token')) {
+      router.push('/admin');
     }
-  }, []);
+  });
 
   return (
     <Form
