@@ -1,3 +1,5 @@
+import { useSetLayoutMenu } from '../contexts/layout-menu';
+import db from '../lib/prisma';
 import {
   EllipsisOutlined,
   QqOutlined,
@@ -9,8 +11,6 @@ import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useSetLayoutMenu } from '../contexts/layout-menu';
-import db from '../lib/prisma';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({
@@ -28,7 +28,7 @@ interface IndexProps {
   students: Omit<Student, 'show' | 'createdAt'>[];
 }
 
-const Index: NextPage<IndexProps> = ({ students }) => {
+const IndexPage: NextPage<IndexProps> = ({ students }) => {
   useSetLayoutMenu('index');
 
   const router = useRouter();
@@ -93,4 +93,4 @@ const Index: NextPage<IndexProps> = ({ students }) => {
   }
 };
 
-export default Index;
+export default IndexPage;

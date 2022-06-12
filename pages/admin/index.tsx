@@ -1,3 +1,6 @@
+import { useSetLayoutMenu } from '../../contexts/layout-menu';
+import db from '../../lib/prisma';
+import API from '../../service/apis';
 import { LogoutOutlined } from '@ant-design/icons';
 import { Button, message, Switch, Table } from 'antd';
 import { ColumnType } from 'antd/lib/table';
@@ -5,9 +8,6 @@ import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useSetLayoutMenu } from '../../contexts/layout-menu';
-import db from '../../lib/prisma';
-import API from '../../service/apis';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({
@@ -46,7 +46,7 @@ interface AdminProps {
   students: Student[];
 }
 
-const Admin: NextPage<AdminProps> = ({ students }) => {
+const AdminPage: NextPage<AdminProps> = ({ students }) => {
   useSetLayoutMenu('admin');
 
   const router = useRouter();
@@ -164,4 +164,4 @@ const StudentShowSwitch: React.FC<StudentShowSwitchProps> = ({
   );
 };
 
-export default Admin;
+export default AdminPage;

@@ -1,7 +1,7 @@
-import { Student } from '@prisma/client';
-import { GetServerSideProps, NextPage } from 'next';
 import { useSetLayoutMenu } from '../contexts/layout-menu';
 import db from '../lib/prisma';
+import { Student } from '@prisma/client';
+import { GetServerSideProps, NextPage } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({

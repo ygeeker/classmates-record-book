@@ -1,10 +1,10 @@
+import { useSetLayoutMenu } from '../contexts/layout-menu';
+import API from '../service/apis';
 import { Button, Form, Input, InputNumber, Radio } from 'antd';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useSetLayoutMenu } from '../contexts/layout-menu';
-import API from '../service/apis';
 
-const Register: NextPage = () => {
+const RegisterPage: NextPage = () => {
   useSetLayoutMenu('register');
 
   const router = useRouter();
@@ -80,4 +80,4 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import jwt from 'jsonwebtoken';
 import db from '../../../../lib/prisma';
+import jwt from 'jsonwebtoken';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export type AdminModifyStudentShowRequestBody = { id: string; show: boolean };
 

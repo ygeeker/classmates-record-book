@@ -1,12 +1,12 @@
+import { useSetLayoutMenu } from '../../contexts/layout-menu';
+import db from '../../lib/prisma';
+import API from '../../service/apis';
 import { Student } from '@prisma/client';
 import { Descriptions } from 'antd';
 import { GetServerSideProps, NextPage } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { useSetLayoutMenu } from '../../contexts/layout-menu';
-import db from '../../lib/prisma';
-import API from '../../service/apis';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const student = await db.student.findUnique({
@@ -23,7 +23,7 @@ interface StudentProps {
   student: Omit<Student, 'id' | 'createdAt'>;
 }
 
-const Student: NextPage<StudentProps> = ({ student }) => {
+const StudentPage: NextPage<StudentProps> = ({ student }) => {
   useSetLayoutMenu('');
   const [notFound, setNotFound] = useState<boolean>(false);
 
@@ -79,4 +79,4 @@ const Student: NextPage<StudentProps> = ({ student }) => {
   );
 };
 
-export default Student;
+export default StudentPage;

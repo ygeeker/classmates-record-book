@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import db from '../../lib/prisma';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export type CreateStudentRequestBody = {
   name: string;

@@ -1,3 +1,4 @@
+import { useLayoutMenuValue } from '../contexts/layout-menu';
 import {
   FormOutlined,
   GlobalOutlined,
@@ -8,7 +9,6 @@ import { Layout as AntdLayout, Menu, Typography } from 'antd';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import { useLayoutMenuValue } from '../contexts/layout-menu';
 
 const Layout: React.FC = ({ children }) => {
   const layoutMenu = useLayoutMenuValue();

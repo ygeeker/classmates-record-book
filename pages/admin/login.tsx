@@ -1,11 +1,11 @@
+import { useSetLayoutMenu } from '../../contexts/layout-menu';
+import API from '../../service/apis';
 import { Button, Form, Input } from 'antd';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import { useSetLayoutMenu } from '../../contexts/layout-menu';
-import API from '../../service/apis';
+import { useEffect } from 'react';
 
-const AdminLogin: NextPage = () => {
+const AdminLoginPage: NextPage = () => {
   useSetLayoutMenu('admin');
 
   const router = useRouter();
@@ -54,4 +54,4 @@ const AdminLogin: NextPage = () => {
   );
 };
 
-export default AdminLogin;
+export default AdminLoginPage;
