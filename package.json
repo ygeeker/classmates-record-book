@@ -13,6 +13,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@ant-design/icons": "^4.7.0",
     "@prisma/client": "^3.15.1",
     "ahooks": "^3.4.1",

@@ -17,7 +17,8 @@ const Layout: React.FC = ({ children }) => {
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE_NAME}的同学录</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </Head>
       <AntdLayout className="min-h-screen">
         <AntdLayout.Header>
