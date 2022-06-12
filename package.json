@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:update": "prisma db push",
-    "format": "prettier --write \"**/*.{ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
