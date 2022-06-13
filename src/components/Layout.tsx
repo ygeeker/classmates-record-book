@@ -22,9 +22,11 @@ const Layout: React.FC = ({ children }) => {
       </Head>
       <AntdLayout className="min-h-screen">
         <AntdLayout.Header>
-          <div className="text-white float-left">
-            {process.env.NEXT_PUBLIC_TITLE_NAME}同学录
-          </div>
+          <Link href="/">
+            <a className="text-white float-left">
+              {process.env.NEXT_PUBLIC_TITLE_NAME}同学录
+            </a>
+          </Link>
           <Menu
             theme="dark"
             mode="horizontal"
