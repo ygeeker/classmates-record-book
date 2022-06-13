@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     select: { id: true, name: true, school: true, class: true },
   });
   console.log(process.env);
-  return { props: { students, key: process.env.AMAP_KEY } };
+  return { props: { students, AMAP_KEY: process.env.AMAP_KEY } };
 };
 
 const MapGraph = dynamic(() => import('../components/MapGraph'), {
@@ -21,7 +21,7 @@ const MapGraph = dynamic(() => import('../components/MapGraph'), {
 
 interface MapProps {
   students: Pick<Student, 'id' | 'name' | 'school' | 'class'>[];
-  key?: string | undefined;
+  AMAP_KEY?: string | undefined;
 }
 
 /**
@@ -30,14 +30,13 @@ interface MapProps {
  * @docs https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare
  */
 
-const MapPage: NextPage<MapProps> = ({ students, key }) => {
-  console.log(key);
+const MapPage: NextPage<MapProps> = ({ students, AMAP_KEY }) => {
   useSetLayoutMenu('map');
 
   return (
     <div>
       <div>MAP</div>
-      <MapGraph key={key} />
+      <MapGraph AMAP_KEY={AMAP_KEY} />
     </div>
   );
 };
