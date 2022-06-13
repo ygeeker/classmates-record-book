@@ -60,7 +60,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({
     where: { show: true },
     orderBy: { createdAt: 'desc' },
-    select: { id: true, name: true, school: true, class: true },
+    select: {
+      id: true,
+      name: true,
+      school: true,
+      class: true,
+      provincePostCode: true,
+    },
   });
   console.log(process.env);
   return { props: { students, AMAP_KEY: process.env.AMAP_KEY } };
@@ -72,7 +78,10 @@ const MapGraph = dynamic(() => import('../components/MapGraph'), {
 });
 
 interface MapProps {
-  students: Pick<Student, 'id' | 'name' | 'school' | 'class'>[];
+  students: Pick<
+    Student,
+    'id' | 'name' | 'school' | 'class' | 'provincePostCode'
+  >[];
   AMAP_KEY?: string | undefined;
 }
 

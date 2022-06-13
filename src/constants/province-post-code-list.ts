@@ -1,6 +1,4 @@
-type ProvincePostCodeItem = { province: string; code: string };
-
-export const PROVINCE_POST_CODE_LIST: ProvincePostCodeItem[] = [
+export const PROVINCE_POST_CODE_LIST = [
   { code: '110000', province: '北京市' },
   { code: '120000', province: '天津市' },
   { code: '130000', province: '河北省' },
@@ -34,4 +32,7 @@ export const PROVINCE_POST_CODE_LIST: ProvincePostCodeItem[] = [
   { code: '650000', province: '新疆维吾尔自治区' },
   { code: '710000', province: '台湾省' },
   { code: '910000', province: '港澳' },
-];
+] as const;
+
+const postCodeList = PROVINCE_POST_CODE_LIST.map(({ code }) => code);
+export type ProvincePostCode = typeof postCodeList[number];

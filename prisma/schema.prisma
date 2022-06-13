@@ -4,20 +4,21 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./db.db"
+  url      = "file:./db.sqlite"
 }
 
 model Student {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  name    String
-  gender  String
-  class   Int
-  school  String
-  qq      String?
-  wechat  String?
-  message String?
+  name             String
+  gender           String
+  class            Int
+  school           String
+  provincePostCode String
+  qq               String?
+  wechat           String?
+  message          String?
 
   show Boolean @default(false)
 }

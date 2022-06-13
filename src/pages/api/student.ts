@@ -1,3 +1,4 @@
+import { ProvincePostCode } from '../../constants/province-post-code-list';
 import db from '../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -10,6 +11,7 @@ export type CreateStudentRequestBody = {
   wechat?: string;
   message?: string;
   key: string;
+  provincePostCode: ProvincePostCode;
 };
 
 const createStudent = async (req: NextApiRequest, res: NextApiResponse) => {

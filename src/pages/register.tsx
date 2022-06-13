@@ -1,7 +1,8 @@
+import { PROVINCE_POST_CODE_LIST } from '../constants/province-post-code-list';
 import { useSetLayoutMenu } from '../contexts/layout-menu';
 import API from '../service/apis';
 import { useRequest } from 'ahooks';
-import { Button, Form, Input, InputNumber, Radio } from 'antd';
+import { Button, Form, Input, InputNumber, Radio, Select } from 'antd';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
@@ -53,6 +54,19 @@ const RegisterPage: NextPage = () => {
         rules={[{ required: true, message: '请输入学校' }]}
       >
         <Input />
+      </Form.Item>
+      <Form.Item
+        label="省份"
+        name="provincePostCode"
+        rules={[{ required: true, message: '请选择省份' }]}
+      >
+        <Select>
+          {PROVINCE_POST_CODE_LIST.map(({ code, province }) => (
+            <Select.Option key={code} value={code}>
+              {province}
+            </Select.Option>
+          ))}
+        </Select>
       </Form.Item>
       <Form.Item
         label="QQ"
