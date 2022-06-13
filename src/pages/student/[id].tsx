@@ -1,9 +1,10 @@
+import { PROVINCE_POST_CODE_LIST } from '../../constants/province-post-code-list';
 import { useSetLayoutMenu } from '../../contexts/layout-menu';
 import db from '../../lib/prisma';
 import API from '../../service/apis';
 import { Student } from '@prisma/client';
 import { useRequest } from 'ahooks';
-import { Descriptions } from 'antd';
+import { Descriptions, Tag } from 'antd';
 import { GetServerSideProps, NextPage } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
@@ -49,7 +50,16 @@ const StudentPage: NextPage<StudentProps> = ({ student }) => {
           {{ boy: '男', girl: '女' }[student.gender]}
         </Descriptions.Item>
         <Descriptions.Item label="班级">{student.class}</Descriptions.Item>
-        <Descriptions.Item label="就读学校">{student.school}</Descriptions.Item>
+        <Descriptions.Item label="就读学校">
+          <Tag>
+            {
+              PROVINCE_POST_CODE_LIST.find(
+                ({ code }) => code === student.provincePostCode,
+              )!.province
+            }
+          </Tag>
+          {student.school}
+        </Descriptions.Item>
         <Descriptions.Item label="QQ" span={2}>
           {student.qq}
         </Descriptions.Item>
