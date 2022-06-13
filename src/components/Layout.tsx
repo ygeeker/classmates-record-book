@@ -23,7 +23,7 @@ const Layout: React.FC = ({ children }) => {
       <AntdLayout className="min-h-screen">
         <AntdLayout.Header>
           <div className="text-white float-left">
-            {process.env.NEXT_PUBLIC_TITLE_NAME}的同学录
+            {process.env.NEXT_PUBLIC_TITLE_NAME}同学录
           </div>
           <Menu
             theme="dark"
