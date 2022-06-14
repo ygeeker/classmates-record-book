@@ -16,7 +16,32 @@ const STUDENT_DATA = [
   },
   {
     name: '孙锦轩',
-    provincePostCode: '120000',
+    provincePostCode: '320000',
+    university: '天津大学',
+  },
+  {
+    name: '孙锦轩',
+    provincePostCode: '320000',
+    university: '天津大学',
+  },
+  {
+    name: '孙锦轩',
+    provincePostCode: '320000',
+    university: '天津大学',
+  },
+  {
+    name: '孙锦轩',
+    provincePostCode: '320000',
+    university: '天津大学',
+  },
+  {
+    name: '孙锦轩',
+    provincePostCode: '320000',
+    university: '天津大学',
+  },
+  {
+    name: '孙锦轩',
+    provincePostCode: '320000',
     university: '天津大学',
   },
 ];
@@ -48,7 +73,6 @@ interface MapProps {
 }
 
 const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: studentData[] }) => {
-  console.log(STUDENT_DATA);
   return (
     <Collapse defaultActiveKey={['1']}>
       {PROVINCE_POST_CODE_LIST.map(({ code, province }) => (
@@ -85,7 +109,7 @@ const MapPage: NextPage<MapProps> = ({ students, AMAP_KEY }) => {
       <div className="h-screen md:basis-4/5 xs:basis-full">
         <MapGraph AMAP_KEY={AMAP_KEY} STUDENT_DATA={STUDENT_DATA} />
       </div>
-      <div className="md:basis-1/5 xs:basis-full">
+      <div className="overflow-scroll md:h-screen md:basis-1/5 xs:basis-full">
         <InfoPanel STUDENT_DATA={STUDENT_DATA} />
       </div>
     </div>

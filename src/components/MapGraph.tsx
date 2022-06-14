@@ -1,12 +1,15 @@
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useMount } from 'ahooks';
 
-const getColorByNum = (num: number | string) => {
+const getColorByNum = (num: number) => {
   if (!num) {
     return 'rgb(227,227,227)';
   }
 
-  var rg = 255 - Math.floor(((Number(num) - 5) / 5) * 255);
+  const rg = 255 - Math.floor(((num - 5) / 5) * 255);
+
+  console.log(rg);
+
   return 'rgb(' + rg + ',' + rg + ',255)';
 };
 
@@ -67,15 +70,14 @@ const MapGraph = ({
       };
 
       STUDENT_DATA.map((student) => {
-        //check if string exsit in an object
-        if (student.province in numPerProvince) {
-          numPerProvince[student.province]++;
+        if (Number(student.provincePostCode) in numPerProvince) {
+          numPerProvince[student.provincePostCode]++;
         } else {
           // 出国学生
         }
       });
 
-      console.log(STUDENT_DATA);
+      console.log(numPerProvince);
 
       const disCountry = new AMap.DistrictLayer.Country({
         zIndex: 10,
@@ -129,7 +131,7 @@ const MapGraph = ({
       });
     })();
   });
-  return <div id="container" style={{ height: '800px' }}></div>;
+  return <div id="container" style={{ height: '80vh' }}></div>;
 };
 
 export default MapGraph;
