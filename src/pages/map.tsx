@@ -102,8 +102,6 @@ const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: studentData[] }) => {
 const MapPage: NextPage<MapProps> = ({ students, AMAP_KEY }) => {
   useSetLayoutMenu('map');
 
-  console.log(students);
-
   return (
     <div className="flex flex-row">
       <div className="h-screen md:basis-4/5 xs:basis-full">

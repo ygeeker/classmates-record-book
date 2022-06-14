@@ -1,10 +1,15 @@
 import {
+  PROVINCE_POST_CODE_LIST,
   POSTCODE_LIST,
-  CODE_PROVINCE_MAP,
 } from '../constants/province-post-code-list';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useMount } from 'ahooks';
 import { useState } from 'react';
+
+const CODE_PROVINCE_MAP = PROVINCE_POST_CODE_LIST.reduce(
+  (acc, { code, province }) => ({ ...acc, [code]: province }),
+  {} as { [code: string]: string },
+);
 
 const getColorByNum = (num: number) => {
   if (!num) {
