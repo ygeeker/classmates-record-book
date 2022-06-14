@@ -18,6 +18,13 @@ const getColorByNum = (num: number) => {
   return 'rgb(' + rg + ',' + rg + ',255)';
 };
 
+const publicStyle = {
+  'nation-stroke': '#22ffff',
+  'coastline-stroke': [0.85, 0.63, 0.94, 1],
+  'province-stroke': 'white',
+  'city-stroke': 'rgba(255,255,255,0.15)', //中国特有字段
+};
+
 const InfoBox = ({
   info,
 }: {
@@ -72,14 +79,11 @@ const MapGraph = ({
         SOC: 'CHN',
         depth: 2,
         styles: {
-          'nation-stroke': '#22ffff',
-          'coastline-stroke': [0.85, 0.63, 0.94, 1],
-          'province-stroke': 'white',
-          'city-stroke': 'rgba(255,255,255,0.15)', //中国特有字段
           fill: function (props: any) {
             //中国特有字段
             return getColorByNum(numPerProvince[props.adcode_pro]);
           },
+          ...publicStyle,
         },
       });
 
@@ -109,6 +113,7 @@ const MapGraph = ({
                 ? 'green'
                 : getColorByNum(numPerProvince[props.adcode_pro]);
             },
+            ...publicStyle,
           });
           setInfo({
             provinceName: CODE_PROVINCE_MAP[Number(selectedPro)] || '海外',
