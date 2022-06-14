@@ -1,5 +1,5 @@
 import {
-  postCodeList,
+  POSTCODE_LIST,
   CODE_PROVINCE_MAP,
 } from '../constants/province-post-code-list';
 import AMapLoader from '@amap/amap-jsapi-loader';
@@ -55,7 +55,7 @@ const MapGraph = ({
 
       let numPerProvince = {};
 
-      postCodeList.forEach((item) => {
+      POSTCODE_LIST.forEach((item) => {
         numPerProvince[item.code] = 0;
       });
 
@@ -86,7 +86,7 @@ const MapGraph = ({
       var map = new AMap.Map('container', {
         zooms: [3, 10],
         showIndoorMap: false,
-        zoom: 3,
+        zoom: 4,
         isHotspot: false,
         defaultCursor: 'pointer',
         touchZoomCenter: 1,
