@@ -46,11 +46,7 @@ const MapGraph = ({
   AMAP_KEY,
   STUDENT_DATA,
 }: {
-  STUDENT_DATA: {
-    name: string;
-    provincePostCode: string | number;
-    school: string;
-  }[];
+  STUDENT_DATA: StudentData[];
   AMAP_KEY?: string;
 }) => {
   const [info, setInfo] = useState<{
@@ -80,10 +76,8 @@ const MapGraph = ({
       });
 
       STUDENT_DATA.map((student) => {
-        if (Number(student.provincePostCode) in numPerProvince) {
+        if (student.provincePostCode in numPerProvince) {
           numPerProvince[student.provincePostCode]++;
-        } else {
-          // 出国学生
         }
       });
 
@@ -100,7 +94,7 @@ const MapGraph = ({
         },
       });
 
-      var map = new AMap.Map('container', {
+      const map = new AMap.Map('container', {
         zooms: [3, 10],
         showIndoorMap: false,
         zoom: 4,
@@ -131,6 +125,7 @@ const MapGraph = ({
           setInfo({
             provinceCode: selectedPro,
             provinceName: CODE_PROVINCE_MAP[selectedPro] || '海外',
+            // TODO 与计数算法重复
             students: STUDENT_DATA.filter(
               (student) => student.provincePostCode === selectedPro,
             ),

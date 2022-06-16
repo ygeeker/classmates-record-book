@@ -41,8 +41,8 @@ const STUDENT_DATA = [
   },
   {
     name: '孙锦轩',
-    provincePostCode: '320000',
-    school: '天津大学',
+    provincePostCode: '-1',
+    school: '哈佛大学',
   },
 ];
 
@@ -73,18 +73,27 @@ interface MapProps {
 }
 
 const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: StudentData[] }) => {
+  const InfoPanelItem = ({ student }: { student: StudentData }) => (
+    <li key={student.name}>
+      <b>{student.name}</b>：{student.school}
+    </li>
+  );
+
   return (
     <Collapse defaultActiveKey={['1']}>
+      <Panel key="oversea" header="海外">
+        {STUDENT_DATA.filter((student) => student.provincePostCode == '-1').map(
+          (student) => (
+            <InfoPanelItem student={student} key={student.name} />
+          ),
+        )}
+      </Panel>
       {PROVINCE_POST_CODE_LIST.map(({ code, province }) => (
         <Panel header={province} key={code}>
           <p>
             {STUDENT_DATA.map((student) => {
               if (student.provincePostCode == code)
-                return (
-                  <li key={student.name}>
-                    <b>{student.name}</b>：{student.school}
-                  </li>
-                );
+                return <InfoPanelItem key={student.name} student={student} />;
             })}
           </p>
         </Panel>

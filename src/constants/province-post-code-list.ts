@@ -32,6 +32,7 @@ export const PROVINCE_POST_CODE_LIST = [
   { code: '650000', province: '新疆维吾尔自治区' },
   { code: '710000', province: '台湾省' },
   { code: '910000', province: '港澳' },
+  { code: '-1', province: '海外' },
 ] as const;
 
 export const POSTCODE_LIST = PROVINCE_POST_CODE_LIST.map(({ code }) => code);
