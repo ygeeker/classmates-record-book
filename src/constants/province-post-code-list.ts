@@ -36,4 +36,4 @@ export const PROVINCE_POST_CODE_LIST = [
 
 export const POSTCODE_LIST = PROVINCE_POST_CODE_LIST.map(({ code }) => code);
 
-export type ProvincePostCode = typeof postCodeList[number];
+export type ProvincePostCode = typeof POSTCODE_LIST[number];

@@ -65,14 +65,17 @@ const MapGraph = dynamic(() => import('../components/MapGraph'), {
   ssr: false,
 });
 
-type studentData = Pick<Student, 'name' | 'university' | 'provincePostCode'>;
+export type StudentData = Pick<
+  Student,
+  'name' | 'university' | 'provincePostCode'
+>;
 
 interface MapProps {
-  students: studentData[];
+  students: StudentData[];
   AMAP_KEY?: string | undefined;
 }
 
-const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: studentData[] }) => {
+const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: StudentData[] }) => {
   return (
     <Collapse defaultActiveKey={['1']}>
       {PROVINCE_POST_CODE_LIST.map(({ code, province }) => (

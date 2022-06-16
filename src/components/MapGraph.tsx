@@ -2,6 +2,7 @@ import {
   PROVINCE_POST_CODE_LIST,
   POSTCODE_LIST,
 } from '../constants/province-post-code-list';
+import { StudentData } from '../pages/map';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useMount } from 'ahooks';
 import { useState } from 'react';
@@ -52,9 +53,14 @@ const MapGraph = ({
   }[];
   AMAP_KEY?: string;
 }) => {
-  const [info, setInfo] = useState<{ postcode: string; name: string }>({
-    postcode: '',
-    name: '',
+  const [info, setInfo] = useState<{
+    students: StudentData[];
+    provinceCode: string;
+    provinceName: string;
+  }>({
+    students: [],
+    provinceName: '',
+    provinceCode: '',
   });
 
   useMount(() => {
@@ -65,10 +71,12 @@ const MapGraph = ({
         plugins: [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
       });
 
-      let numPerProvince = {};
+      let numPerProvince: {
+        [code: string]: number;
+      } = {};
 
-      POSTCODE_LIST.forEach((item) => {
-        numPerProvince[item.code] = 0;
+      POSTCODE_LIST.forEach((item: string) => {
+        numPerProvince[item] = 0;
       });
 
       STUDENT_DATA.map((student) => {
@@ -113,7 +121,7 @@ const MapGraph = ({
           var selectedPro = props.adcode_pro;
           // 重置行政区样式
           disCountry.setStyles({
-            fill: function (props) {
+            fill: function (props: { adcode_pro: string }) {
               return props.adcode_pro == selectedPro
                 ? 'green'
                 : getColorByNum(numPerProvince[props.adcode_pro]);
@@ -121,7 +129,8 @@ const MapGraph = ({
             ...publicStyle,
           });
           setInfo({
-            provinceName: CODE_PROVINCE_MAP[Number(selectedPro)] || '海外',
+            provinceCode: selectedPro,
+            provinceName: CODE_PROVINCE_MAP[selectedPro] || '海外',
             students: STUDENT_DATA.filter(
               (student) => student.provincePostCode === selectedPro,
             ),
