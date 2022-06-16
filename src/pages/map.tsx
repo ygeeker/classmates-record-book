@@ -12,37 +12,37 @@ const STUDENT_DATA = [
   {
     name: '俞凯戈',
     provincePostCode: '110000',
-    university: '清华大学',
+    school: '清华大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
   {
     name: '孙锦轩',
     provincePostCode: '320000',
-    university: '天津大学',
+    school: '天津大学',
   },
 ];
 
@@ -65,10 +65,7 @@ const MapGraph = dynamic(() => import('../components/MapGraph'), {
   ssr: false,
 });
 
-export type StudentData = Pick<
-  Student,
-  'name' | 'university' | 'provincePostCode'
->;
+export type StudentData = Pick<Student, 'name' | 'school' | 'provincePostCode'>;
 
 interface MapProps {
   students: StudentData[];
@@ -84,8 +81,8 @@ const InfoPanel = ({ STUDENT_DATA }: { STUDENT_DATA: StudentData[] }) => {
             {STUDENT_DATA.map((student) => {
               if (student.provincePostCode == code)
                 return (
-                  <li>
-                    <b>{student.name}</b>：{student.university}
+                  <li key={student.name}>
+                    <b>{student.name}</b>：{student.school}
                   </li>
                 );
             })}

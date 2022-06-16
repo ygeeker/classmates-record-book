@@ -49,7 +49,7 @@ const MapGraph = ({
   STUDENT_DATA: {
     name: string;
     provincePostCode: string | number;
-    university: string;
+    school: string;
   }[];
   AMAP_KEY?: string;
 }) => {
