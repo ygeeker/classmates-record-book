@@ -35,6 +35,6 @@ export const PROVINCE_POST_CODE_LIST = [
   { code: '-1', province: '海外' },
 ] as const;
 
-export const POSTCODE_LIST = PROVINCE_POST_CODE_LIST.map(({ code }) => code);
+const postCodeList = PROVINCE_POST_CODE_LIST.map(({ code }) => code);
 
-export type ProvincePostCode = typeof POSTCODE_LIST[number];
+export type ProvincePostCode = typeof postCodeList[number];

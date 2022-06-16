@@ -1,7 +1,4 @@
-import {
-  PROVINCE_POST_CODE_LIST,
-  POSTCODE_LIST,
-} from '../constants/province-post-code-list';
+import { PROVINCE_POST_CODE_LIST } from '../constants/province-post-code-list';
 import { StudentData } from '../pages/map';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useMount } from 'ahooks';
@@ -9,19 +6,15 @@ import { useState } from 'react';
 
 const CODE_PROVINCE_MAP = PROVINCE_POST_CODE_LIST.reduce(
   (acc, { code, province }) => ({ ...acc, [code]: province }),
-  {} as { [code: string]: string },
+  {} as Record<string, string>,
 );
 
 const getColorByNum = (num: number) => {
   if (!num) {
     return 'rgb(227,227,227)';
   }
-
   const rg = 255 - Math.floor(((num - 5) / 5) * 255);
-
-  console.log(rg);
-
-  return 'rgb(' + rg + ',' + rg + ',255)';
+  return `rgb(${rg},${rg},255)`;
 };
 
 const publicStyle = {
@@ -31,30 +24,21 @@ const publicStyle = {
   'city-stroke': 'rgba(255,255,255,0.15)', //中国特有字段
 };
 
-const InfoBox = ({
-  info,
-}: {
-  info: {
-    provinceName: string;
-    students: any[];
-  };
-}) => {
-  return <div className="flex flex-col">{info.provinceName}</div>;
-};
-
-const MapGraph = ({
-  AMAP_KEY,
-  STUDENT_DATA,
-}: {
-  STUDENT_DATA: StudentData[];
+interface MapGraphProps {
+  students: StudentData[];
   AMAP_KEY?: string;
-}) => {
-  const [info, setInfo] = useState<{
-    students: StudentData[];
+}
+
+/**
+ * @docs https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare
+ */
+const MapGraph: React.FC<MapGraphProps> = ({ students, AMAP_KEY }) => {
+  const [selectedInfo, setSelectedInfo] = useState<{
+    studentsCount: number;
     provinceCode: string;
     provinceName: string;
   }>({
-    students: [],
+    studentsCount: -1,
     provinceName: '',
     provinceCode: '',
   });
@@ -67,34 +51,28 @@ const MapGraph = ({
         plugins: [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
       });
 
-      let numPerProvince: {
-        [code: string]: number;
-      } = {};
+      const countPerProvince = students.reduce(
+        (prev, { provincePostCode }) => ({
+          ...prev,
+          [provincePostCode]: prev[provincePostCode]++ || 1,
+        }),
+        {} as Record<string, number>,
+      );
 
-      POSTCODE_LIST.forEach((item: string) => {
-        numPerProvince[item] = 0;
-      });
-
-      STUDENT_DATA.map((student) => {
-        if (student.provincePostCode in numPerProvince) {
-          numPerProvince[student.provincePostCode]++;
-        }
-      });
-
-      const disCountry = new AMap.DistrictLayer.Country({
+      const country = new AMap.DistrictLayer.Country({
         zIndex: 10,
         SOC: 'CHN',
         depth: 2,
         styles: {
-          fill: function (props: any) {
+          fill(props: { adcode_pro: number }) {
             //中国特有字段
-            return getColorByNum(numPerProvince[props.adcode_pro]);
+            return getColorByNum(countPerProvince[props.adcode_pro]);
           },
           ...publicStyle,
         },
       });
 
-      const map = new AMap.Map('container', {
+      const map = new AMap.Map('map-container', {
         zooms: [3, 10],
         showIndoorMap: false,
         zoom: 4,
@@ -102,33 +80,29 @@ const MapGraph = ({
         defaultCursor: 'pointer',
         touchZoomCenter: 1,
         pitch: 0,
-        layers: [disCountry],
+        layers: [country],
         viewMode: '3D',
       });
 
-      map.on('click', function (ev: any) {
-        var px = ev.pixel;
+      map.on('click', (ev: any) => {
+        const px = ev.pixel;
         // 拾取所在位置的行政区
-        var props = disCountry.getDistrictByContainerPos(px);
-        console.log(props);
+        const props = country.getDistrictByContainerPos(px);
         if (props) {
-          var selectedPro = props.adcode_pro;
+          const selectedProvincePostCode = props.adcode_pro;
           // 重置行政区样式
-          disCountry.setStyles({
-            fill: function (props: { adcode_pro: string }) {
-              return props.adcode_pro == selectedPro
+          country.setStyles({
+            fill(props: { adcode_pro: string }) {
+              return props.adcode_pro == selectedProvincePostCode
                 ? 'green'
-                : getColorByNum(numPerProvince[props.adcode_pro]);
+                : getColorByNum(countPerProvince[props.adcode_pro]);
             },
             ...publicStyle,
           });
-          setInfo({
-            provinceCode: selectedPro,
-            provinceName: CODE_PROVINCE_MAP[selectedPro] || '海外',
-            // TODO 与计数算法重复
-            students: STUDENT_DATA.filter(
-              (student) => student.provincePostCode === selectedPro,
-            ),
+          setSelectedInfo({
+            provinceCode: selectedProvincePostCode,
+            provinceName: CODE_PROVINCE_MAP[selectedProvincePostCode],
+            studentsCount: countPerProvince[selectedProvincePostCode],
           });
         }
       });
@@ -137,8 +111,13 @@ const MapGraph = ({
 
   return (
     <>
-      <InfoBox info={info} />
-      <div id="container" style={{ height: '80vh' }}></div>
+      {selectedInfo.studentsCount !== -1 && (
+        <div>
+          {selectedInfo.provinceCode} {selectedInfo.provinceName}{' '}
+          {selectedInfo.studentsCount}人
+        </div>
+      )}
+      <div id="map-container" style={{ height: '80vh' }}></div>
     </>
   );
 };
