@@ -1,11 +1,9 @@
-import { PROVINCE_POST_CODE_LIST } from '../constants/province-post-code-list';
+import InfoPanel from '../components/map/InfoPanel';
 import { useSetLayoutMenu } from '../contexts/layout-menu';
 import db from '../lib/prisma';
 import { Student } from '@prisma/client';
-import { Collapse } from 'antd';
 import { GetServerSideProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const students = await db.student.findMany({
@@ -22,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { students, AMAP_KEY: process.env.AMAP_KEY } };
 };
 
-const MapGraph = dynamic(() => import('../components/MapGraph'), {
+const MapGraph = dynamic(() => import('../components/map/MapGraph'), {
   ssr: false,
 });
 
@@ -30,23 +28,6 @@ export type StudentData = Pick<
   Student,
   'id' | 'name' | 'class' | 'school' | 'provincePostCode'
 >;
-
-const InfoPanel: React.FC<{ students: StudentData[] }> = ({ students }) => {
-  return (
-    <Collapse>
-      {PROVINCE_POST_CODE_LIST.map(({ code, province }) => (
-        <Collapse.Panel header={province} key={code}>
-          {students
-            .filter(({ provincePostCode }) => provincePostCode === code)
-            .map(
-              (student) =>
-                `${student.class}班 ${student.name} ${student.school}`,
-            )}
-        </Collapse.Panel>
-      ))}
-    </Collapse>
-  );
-};
 
 interface MapProps {
   students: StudentData[];

@@ -1,5 +1,5 @@
-import { PROVINCE_POST_CODE_LIST } from '../constants/province-post-code-list';
-import { StudentData } from '../pages/map';
+import { PROVINCE_POST_CODE_LIST } from '../../constants/province-post-code-list';
+import { StudentData } from '../../pages/map';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useMount } from 'ahooks';
 import { useState } from 'react';
