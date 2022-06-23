@@ -20,6 +20,36 @@ const Layout: React.FC = ({ children }) => {
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </Head>
+
+      <nav className="border fixed split-nav">
+        <div className="nav-brand">
+          <h3>
+            <a href="#">Get PaperCSS</a>
+          </h3>
+        </div>
+        <div className="collapsible">
+          <input id="collapsible1" type="checkbox" name="collapsible1" />
+          <label for="collapsible1">
+            <div className="bar1"></div>
+            <div className="bar2"></div>
+            <div className="bar3"></div>
+          </label>
+          <div className="collapsible-body">
+            <ul className="inline">
+              <li>
+                <a href="#">Documentation</a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Github</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
       <AntdLayout className="min-h-screen">
         <AntdLayout.Header>
           <Link href="/">

@@ -1,5 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url('antd/dist/antd.css');
+@import url('https://unpkg.com/papercss@1.8.3/dist/paper.min.css')
