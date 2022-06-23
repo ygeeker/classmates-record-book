@@ -36,7 +36,7 @@ const Layout: React.FC = ({ children }) => {
                 <Link href="/register">登记</Link>
               </li>
               <li>
-                <Link href="/map">地图</Link>
+                <Link href="/map">Map</Link>
               </li>
             </ul>
           </div>

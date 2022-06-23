@@ -1,2 +1,25 @@
 @import url('antd/dist/antd.css');
-@import url('https://unpkg.com/papercss@1.8.3/dist/paper.min.css')
+@import url('https://unpkg.com/papercss@1.8.3/dist/paper.min.css');
+
+@font-face {
+  font-family: KuaiLe;
+  src: url('/ZCOOLKuaiLe-Regular.ttf') format('truetype');
+}
+
+a,
+button,
+html,
+input,
+li,
+option,
+p,
+select,
+table,
+tbody,
+td,
+textarea,
+th,
+thead,
+tr {
+  font-family: KuaiLe, Neucha, sans-serif !important;
+}
