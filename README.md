@@ -11,6 +11,15 @@
 
 此项目采用node.js构建，并使用pnpm管理软件包。如果你未安装任何环境，请参考[pnpm官网教程](https://pnpm.io/zh/installation)。
 
+如果您已安装了npm或yarn，您可以使用以下命令快速安装pnpm：
+
+```sh
+# npm
+npm install pnpm
+# yarn
+yarn install pnpm
+```
+
 ### 安装
 
 ```sh
