@@ -22,3 +22,7 @@ pnpm run dev
 pnpm run build
 pnpm run start
 ```
+
+## 鸣谢
+
+此项目由 [Justin](https://github.com/jsun969) 开发并捐赠给[YGeeker](https://github.com/ygeeker)，并由[YGeeker](https://github.com/ygeeker)团队负责后期维护。
