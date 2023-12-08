@@ -53,10 +53,10 @@ const Layout: React.FC = ({ children }) => {
         <AntdLayout.Footer className="text-center">
           Github:{' '}
           <Typography.Link
-            href="https://github.com/jsun969/classmates-record-book"
+            href="https://github.com/ygeeker/classmates-record-book"
             target="_blank"
           >
-            jsun969/classmates-record-book
+            ygeeker/classmates-record-book
           </Typography.Link>
         </AntdLayout.Footer>
       </AntdLayout>
